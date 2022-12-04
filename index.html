@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./style/index.css">
+    <script src="https://kit.fontawesome.com/84389fb3e1.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/2.0.2/sha.js"></script>
+    <script src="./system/hash.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
+    <script src='https://unpkg.com/tesseract.js@4.0.0/dist/tesseract.min.js'></script>
+    <title>OSC ID Tool</title>
+</head>
+<body onload="passCheck()">
+
+    <!--
+        
+        THIS IS THE FIRST VERSION OF SIMPLE NAME and SURNAME ENCRYPTION
+        ( IT DOESN'T SUPPORT SPACES IN ENCRYPTION BECAUSE I DIDN'T GET MUCH TIME AND IT'S STILL JUST THE V.1 )
+        I MADE THIS TOOL IN ORDER TO ENCRYPT OUR UNIVERSITY CLUB (OPEN SOURCE CLUB) MEMBERS NAMES AND SURNAMES
+        SO IT WOULD BE IMPOSSIBLE TO ANY PERSON TO FAKE A CLUB ID.
+        IF SOMEONE HOPEFULLY CRACK THIS ENCRYPTION I WILL MAKE IT MUCH STRONGER INSHALLAH :)
+
+    -->
+    
+    <div id="scanning">
+        <b>Scanning ID ...</b>
+    </div>
+    <h1 style="color: rgb(255, 89, 0); text-align: center; text-decoration: underline; margin: 20px 0;">OSC ID TOOL</h1>
+    <script src="./style/tab.js" defer></script>
+    <nav>
+        <div>
+            <h1>Encrypt</h1>
+        </div>
+        <div>
+            <h1>Decrypt</h1>
+        </div>
+    </nav>
+    <script src="./system/encrypt.js" defer></script>
+    <script src="./system/copy.js" defer></script>
+    <div class="tab" id="encrypt">
+        <h2>ID Encryption</h2>
+        <h3>Input</h3>
+        <input type="text" id="name" placeholder="Enter Name" maxlength="30"><br>
+        <input type="text" id="surname" placeholder="Enter Surname" maxlength="30"><br><br>
+        <button onclick="encrypt()">Encrypt</button>
+        <hr>
+        <h3>Result</h3>
+        <input type="text" id="result" readonly placeholder="osc-xxxxxxxxxxxxxxxx...">
+        <span onclick="copy()">copy</span>
+    </div>
+    <script src="./system/decrypt.js" defer></script>
+    <script src="./system/scanId.js" defer></script>
+
+    <script src="./style/scanIdPanel.js" defer></script>
+    <div class="tab" id="decrypt">
+        <h2>ID Decryption</h2>
+        <h3>Input</h3>
+        <table id="panel">
+            <tr>
+                <td colspan="3">
+                    <video id="video" autoplay playsinline width="600" height="40"></video>
+                    <canvas id="canvas" class="d-none"></canvas>
+                </td>
+            </tr>
+            <tr>
+                <td >
+                    <button onclick="takePhoto()"><i class="fa-solid fa-camera"></i></button>
+                </td>
+                <td>
+                    <button onclick="flipCamera()"><i class="fa-solid fa-camera-rotate"></i></button>
+                </td>
+                <td>
+                    <button onclick="clearPhoto()"><i class="fa-solid fa-xmark"></i></button>
+                </td>
+            </tr>
+        </table>
+        <button onclick="openScanIdPanel()" id="openPanelBtn">Scan ID</button><br>
+        <input type="text" id="encrypted" placeholder="Or Type ID"><br><br>
+        <button onclick="decrypt()">Decrypt</button>
+        <hr>
+        <h3>Result</h3>
+        <input type="text" id="name" readonly placeholder="Name"><br>
+        <input type="text" id="surname" readonly placeholder="Surname">
+    </div>
+</body>
+</html>
