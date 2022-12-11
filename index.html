@@ -7,12 +7,11 @@
     <link rel="stylesheet" type="text/css" href="./style/index.css">
     <script src="https://kit.fontawesome.com/84389fb3e1.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/2.0.2/sha.js"></script>
-    <script src="./system/hash.js"></script>
     <script type="text/javascript" src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
     <script src='https://unpkg.com/tesseract.js@4.0.0/dist/tesseract.min.js'></script>
     <title>OSC ID Tool</title>
 </head>
-<body onload="passCheck()">
+<body>
 
     <!--
         
@@ -37,13 +36,15 @@
             <h1>Decrypt</h1>
         </div>
     </nav>
+    <script src="./system/hash.js" defer></script>
     <script src="./system/encrypt.js" defer></script>
     <script src="./system/copy.js" defer></script>
     <div class="tab" id="encrypt">
         <h2>ID Encryption</h2>
         <h3>Input</h3>
         <input type="text" id="name" placeholder="Enter Name" maxlength="30"><br>
-        <input type="text" id="surname" placeholder="Enter Surname" maxlength="30"><br><br>
+        <input type="text" id="surname" placeholder="Enter Surname" maxlength="30"><br>
+        <input type="text" id="toolkey" placeholder="Enter Tool Key" maxlength="22"><br><br>
         <button onclick="encrypt()">Encrypt</button>
         <hr>
         <h3>Result</h3>
@@ -60,7 +61,7 @@
         <table id="panel">
             <tr>
                 <td colspan="3">
-                    <video id="video" autoplay playsinline width="600" height="40"></video>
+                    <video id="video" autoplay playsinline width="300" height="50"></video>
                     <canvas id="canvas" class="d-none"></canvas>
                 </td>
             </tr>
